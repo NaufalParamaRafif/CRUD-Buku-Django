@@ -1,0 +1,42 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="overflow-x-auto p-10">
+    <a href='{% url 'add'  %}' class='btn btn-success'>Tambah Data</a>
+    <table class="table">
+      <!-- head -->
+      <thead>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Stock</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- row 1 -->
+          {% for buku in books %}
+            <tr class="bg-base-200">
+              <th></th>
+              <td>{{ buku.title }}</td>
+              <td>{{ buku.author }}</td>
+              <td>{{ buku.stock }}</td>
+              <td>
+                <a href="{% url 'show' buku.id %}" class="btn btn-info m-1">Show</a>
+                <a href="{% url 'update' buku.id %}" class="btn btn-warning m-1">Edit</a>
+                <form action="{% url 'delete' buku.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-error m-1" onclick="return confirm('Are you sure you want to delete this book?');">Delete</button>
+                </form>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td>Tidak ada data!</td>
+            </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock content %}

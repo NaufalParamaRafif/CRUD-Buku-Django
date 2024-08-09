@@ -1,0 +1,85 @@
+{% extends "main.html" %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="flex flex-col items-center space-y-4">
+            <!-- Book Title -->
+            <div class="w-full max-w-xs">
+                <label class="label">
+                    <span class="label-text">Judul</span>
+                </label>
+                <input type="text" name="title" placeholder="Masukkan judul buku" class="input input-bordered w-full max-w-xs" value="{{ book.title }}" required />
+            </div>
+
+            <!-- Author -->
+            <div class="w-full max-w-xs">
+                <label class="label">
+                    <span class="label-text">Penulis</span>
+                </label>
+                <input type="text" name="author" placeholder="Masukkan nama penulis" class="input input-bordered w-full max-w-xs" value="{{ book.author }}" required />
+            </div>
+
+            <!-- ISBN -->
+            <div class="w-full max-w-xs">
+                <label class="label">
+                    <span class="label-text">ISBN</span>
+                </label>
+                <input type="text" name="isbn" placeholder="Masukkan ISBN" class="input input-bordered w-full max-w-xs" value="{{ book.isbn }}" required />
+            </div>
+
+            <!-- Description -->
+            <div class="w-full max-w-xs">
+                <label class="label">
+                    <span class="label-text">Deskripsi</span>
+                </label>
+                <textarea name="description" placeholder="Masukkan deskripsi buku" class="textarea textarea-bordered w-full max-w-xs" required>{{ book.description }}</textarea>
+            </div>
+
+            <!-- Published Date -->
+            <div class="w-full max-w-xs">
+                <label class="label">
+                    <span class="label-text">Tanggal Terbit</span>
+                </label>
+                <input type="date" name="published_date" class="input input-bordered w-full max-w-xs" value="{{ book.published_date }}" required />
+            </div>
+
+            <!-- Language -->
+            <div class="w-full max-w-xs">
+                <label class="label">
+                    <span class="label-text">Bahasa</span>
+                </label>
+                <input type="text" name="language" placeholder="Masukkan bahasa" class="input input-bordered w-full max-w-xs" value="{{ book.language }}" required />
+            </div>
+
+            <!-- Number of Pages -->
+            <div class="w-full max-w-xs">
+                <label class="label">
+                    <span class="label-text">Jumlah Halaman</span>
+                </label>
+                <input type="number" name="number_of_pages" placeholder="Masukkan jumlah halaman" class="input input-bordered w-full max-w-xs" value="{{ book.number_of_pages }}" required />
+            </div>
+
+            <!-- Stock -->
+            <div class="w-full max-w-xs">
+                <label class="label">
+                    <span class="label-text">Stok</span>
+                </label>
+                <input type="number" name="stock" placeholder="Masukkan jumlah stok" class="input input-bordered w-full max-w-xs" value="{{ book.stock }}" required />
+            </div>
+
+            <!-- Price -->
+            <div class="w-full max-w-xs">
+                <label class="label">
+                    <span class="label-text">Harga</span>
+                </label>
+                <input type="number" name="price" placeholder="Masukkan harga buku" class="input input-bordered w-full max-w-xs" step="0.01" value="{{ book.price }}" required />
+            </div>
+
+            <!-- Submit Button -->
+            <div class="w-full max-w-xs">
+                <button type="submit" class="btn btn-primary w-full">Simpan</button>
+            </div>
+        </div>
+    </form>
+{% endblock content %}
